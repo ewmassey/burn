@@ -1,0 +1,68 @@
+extends layout
+block content
+  h1.text-center Burner Page
+  hr
+  #wysihtml5-toolbar(style="display: none;")
+    .row
+      .btn-toolbar
+        .btn-group
+          a.btn.btn-default.btn-large(data-wysihtml5-command="formatBlock", data-wysihtml5-command-value="div", title="default")
+            span.glyphicon.glyphicon-font
+          a.btn.btn-default.btn-large(data-wysihtml5-command="bold", title="CTRL+B")
+            span.glyphicon.glyphicon-bold
+          a.btn.btn-default.btn-large(data-wysihtml5-command="italic", title="CTRL+I")
+            span.glyphicon.glyphicon-italic
+          a.btn.btn-default.btn-large(data-wysihtml5-command="italic", title="Underline")
+            u U
+          a.btn.btn-default.btn-large(data-wysihtml5-command="formatBlock", data-wysihtml5-command-value="h1") H1
+          a.btn.btn-default.btn-large(data-wysihtml5-command="formatBlock", data-wysihtml5-command-value="h2") H2
+
+        .btn-group
+          a.btn.btn-default.btn-large(data-wysihtml5-command="insertUnorderedList", title="Unordered List")
+            span.glyphicon.glyphicon-list
+          a.btn.btn-default.btn-large(data-wysihtml5-command="insertOrderedList", title="Ordered List")
+            span.glyphicon.glyphicon-th-list
+
+        .btn-group
+          a.btn.btn-default.btn-large(data-wysihtml5-command="createLink", title="Create Link")
+            span.glyphicon.glyphicon-link
+          a.btn.btn-default.btn-large(data-wysihtml5-command="insertImage", title="Add Picture")
+            span.glyphicon.glyphicon-picture
+
+    .row.alert.alert-info(data-wysihtml5-dialog="createLink", style="display: none;")
+      form.form-inline
+        label.col-lg-1 Link: 
+        input#linkInput.col-lg-9(data-wysihtml5-dialog-field="href", value="http://")
+        a.col-lg-1(data-wysihtml5-dialog-action="save")
+          span.glyphicon.glyphicon-ok
+
+    .row.alert.alert-info(data-wysihtml5-dialog="insertImage", style="display: none;")
+      form.form-inline
+        label.col-lg-1(for="insertPic") Link:
+        input#insertPic.col-lg-8(data-wysihtml5-dialog-field="src", value="http://")
+        select.col-lg-1(data-wysihtml5-dialog-field="className")
+          option(value="wysiwyg-float-left", selected) left
+          option(value="wysiwyg-float-right") right
+          option(value="wysiwyg-float-center") center
+        a.col-lg-1(data-wysihtml5-dialog-action="save")
+          span.glyphicon.glyphicon-ok
+
+  form(method="POST", action="/create")
+
+    .row
+      br
+      textarea.form-control(name="page", id="wysihtml5-textarea", rows="20", placeholder="Live in the Now...", autofocus)
+    .row.text-center
+      br
+      button.btn.btn-success.btn-large(type="submit") create 
+        span.glyphicon.glyphicon-fire
+
+
+
+  script(src="/js/wysihtml5-0.3.0.min.js")
+  script(src="/js/parser_rules/simple.js")
+  script(type="text/javascript").
+    var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+      toolbar:      "wysihtml5-toolbar", // id of toolbar element
+      parserRules:  wysihtml5ParserRules // defined in parser rules set 
+    });
