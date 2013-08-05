@@ -3,5 +3,8 @@ block content
   h1 Burn
   hr
   .text-center
-    p Send this link to view your webpage once.
+    p Send this link to have your page viewed once.
     h3= url
+    button#copy-button.btn.btn-info(data-clipboard-text=""+url, title="Click to copy link") Copy to Clipboard
+  script(src="/js/ZeroClipboard.min.js")
+  script(src="/js/copy.js")
