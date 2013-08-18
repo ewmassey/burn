@@ -16,9 +16,10 @@ block content
             .panel-heading
               h3.panel-title edit&nbsp;
                 span.glyphicon.glyphicon-pencil
+                button#clear.btn.btn-link clear
             .panel-body
               .col-lg-12
-                textarea.form-control(id="markdown", name="markdown", rows="20", autofocus).
+                textarea.form-control(id="markdown", name="markdown", rows="12", autofocus).
                   # ![fire](/favicon.ico) burnmark.io ![fire](/favicon.ico)
                   ### Send a one time use burner page using mardown syntax.
                   1. Create message using [markdown syntax](http://daringfireball.net/projects/markdown/syntax)
@@ -33,8 +34,14 @@ block content
     $(document).ready(function(){
       $("#preview").html(marked($("#markdown").val()));
 
-      $("#markdown").keyup(function() {
+      $("#markdown").keyup(function(e) {
+
         $("#preview").html(marked(this.value));
+        });
+
+      $("#clear").click(function(e) {
+        e.preventDefault();
+        $("#markdown").html("");
         });
 
       });
