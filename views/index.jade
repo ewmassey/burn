@@ -2,7 +2,7 @@ extends layout
 block content
   .container  
     .row
-      .col-sm-8.col-sm-offset-2
+      .col-sm-12.col-lg-8.col-lg-offset-2
         .panel
           .panel-heading
             h3.panel-title Preview&nbsp;
@@ -11,14 +11,14 @@ block content
             #preview
     .row
       form(method="POST", action="/create")
-        .col-sm-8.col-sm-offset-2
+        .col-sm-12.col-lg-8.col-lg-offset-2
           .panel
             .panel-heading
               h3.panel-title edit&nbsp;
                 span.glyphicon.glyphicon-pencil
                 button#clear.btn.btn-link clear
             .panel-body
-              .col-sm-12
+              .col-lg-12
                 textarea.form-control(id="markdown", name="markdown", rows="12", autofocus).
                   # ![fire](/favicon.ico) burnmark.io ![fire](/favicon.ico)
                   ### Send a one time use burner page using mardown syntax.
