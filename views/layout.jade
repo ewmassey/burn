@@ -3,18 +3,29 @@ html(lang='en')
   head
     meta(charset='utf8')
     base(href='/')
-    title Burner Page
-    link(href="/css/bootstrap.min.css", rel="stylesheet")
-    link(href="/css/bootstrap-glyphicons.css", rel="stylesheet")
+    title burnmark.io
+    link(href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap.min.css", rel="stylesheet")
+    link(href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css", rel="stylesheet")
     link(href="/css/burner.css", rel="stylesheet")
+    
     script(src="http://code.jquery.com/jquery.js")
-    script(src="/js/bootstrap.min.js")
+    script(src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/js/bootstrap.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/marked/0.2.9/marked.min.js")
 
   body
-    .container-narrow
-      block content
-      hr
-      .text-center
-        a(href="/") burn
+    #wrap
+      .container
+        .row
+          .col-lg-8.col-lg-offset-2
+            h1.text-center burnmark.io
+            hr
+      .container
+        block content
+      #push
+    #footer
+      .container
+        .col-lg-8.col-lg-offset-2.text-center
+          hr
+          a(href="/",style="margin: 20px 0;") burn
     
 

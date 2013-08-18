@@ -1,5 +1,10 @@
 extends layout
 block content
-  h1 Burner Page
-  hr
-  div!= page
+  .row
+    br
+    .col-lg-8.col-lg-offset-2
+      .panel
+        .panel-heading
+          h3.panel-title burnmark
+        .panel-body
+          #preview!= html

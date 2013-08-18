@@ -1,6 +1,7 @@
 var express = require("express"),
   http = require("http"),
   mongoose = require("mongoose"),
+  marked = require("marked"),
   Schema = mongoose.Schema,
   CONF = require('./conf');
 
@@ -18,20 +19,23 @@ app.configure(function() {
 // ##### Page Schema ######################
 
 var pageSchema = new Schema({
-  content: String,
+  markdown: String,
   viewed: Boolean
 });
 
 var Page = mongoose.model('Page', pageSchema);
 
 // ##### Views ############################
+
+
+
 app.get('/', function(req, res){
   res.render('index.jade');
 });
 
 app.post('/create', function(req, res){
   var page = new Page({
-    content : req.body.page,
+    markdown : req.body.markdown,
     viewed : false
   });
 
@@ -55,7 +59,8 @@ app.get("/b/:id", function(req, res){
       } else {
         page.viewed = true;
         page.save();
-        res.render('burner.jade', {"page" : page.content});
+        var html = marked(page.markdown);
+        res.render('burner.jade', {"html" : html});
       }
     }
   });
